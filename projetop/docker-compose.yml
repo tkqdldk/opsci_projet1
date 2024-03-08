@@ -1,0 +1,63 @@
+version: "3"
+services: #liste de nos conteneurs
+  strapi:
+    container_name: strapi
+    build: . # cherche le dockerfile qui est dans le répertoire courant
+    image: strapi:latest
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: strapiDB
+      DATABASE_PORT: 5432
+      DATABASE_NAME: projetop
+      DATABASE_USERNAME: strapi
+      DATABASE_PASSWORD: safepassword
+      JWT_SECRET: ${JWT_SECRET}
+      ADMIN_JWT_SECRET: fOYbi4o79m/oueolAtjDBA==
+      APP_KEYS: tuxjRs6aWVdFKqPgbvwUew==,uZBqeUdqbmM5OgHcUVm7PQ==,Bz4otGObAwHHHXtEzOdXeA==,vDFOjbNRqiGJ+wjuV47Yvg==
+      NODE_ENV: ${NODE_ENV}
+    volumes:
+      - ./config:/opt/app/config
+      - ./src:/opt/app/src
+      - ./package.json:/opt/package.json
+      - ./yarn.lock:/opt/yarn.lock
+      - ./.env:/opt/app/.env
+      - ./public/uploads:/opt/app/public/uploads
+    ports:
+      - "1337:1337"
+    networks:
+      - strapi
+    depends_on:
+      - strapiDB
+
+  strapiDB:
+    container_name: strapiDB
+    platform: linux/amd64 #for platform error on Apple M1 chips
+    restart: unless-stopped
+    env_file: .env
+    image: postgres:12.0-alpine
+    environment:
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: safepassword
+      POSTGRES_DB: projet1
+    volumes:
+      - strapi-data:/var/lib/postgresql/data/ #using a volume
+      #- ./data:/var/lib/postgresql/data/ # if you want to use a bind folder
+
+    networks:
+      - strapi
+  react-app:
+    container_name: reactApp
+    build: #obligatoire si on veut construire l'image via le dockerfile
+      context: ./front_end 
+      dockerfile: Dockerfile
+    ports:
+    - "5173:5173" #valeur vite
+volumes:
+  strapi-data:
+
+networks:
+  strapi:
+    name: Strapi
+    driver: bridge
