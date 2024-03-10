@@ -4,7 +4,7 @@
 
 ## Réseau Docker
 
-Le réseau `strapi-network` est créer avec l'adresse IP `172.19.0.0/24`.
+Le réseau `strapi-network` est créer avec l'adresse IP `172.19.0.0/16`.
 
 ## Conteneur PostgreSQL
 
