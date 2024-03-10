@@ -57,5 +57,5 @@ Le conteneur héberge l'application backend.
 7. **Lancer la commande : 'bash rm.sh' pour supprimer les conteneurs**
 
 
-ATTENTION : les adresses IP de ./projetop/.env et ./projetop/config/database.js doivent être en raccord avec l'adresse IP du réseau.
+**_ATTENTION : les adresses IP de ./projetop/.env et ./projetop/config/database.js doivent être en raccord avec l'adresse IP du réseau._**
 
