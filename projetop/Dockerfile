@@ -1,8 +1,7 @@
 FROM node:18-alpine
 
 # Installation des dépendances nécessaires pour sharp
-RUN apk update && \
-    apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev nasm bash vips-dev git
+RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev nasm bash vips-dev git
 
 # Définition de l'environnement NODE_ENV
 ARG NODE_ENV=development
@@ -15,10 +14,10 @@ WORKDIR /opt/
 # Copie des fichiers package.json et package-lock.json
 COPY package.json package-lock.json ./
 
+
 # Installation des dépendances
-RUN npm install -g node-gyp && \
-    npm config set fetch-retry-maxtimeout 600000 -g && \
-    npm install
+RUN npm install -g node-gyp 
+RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install
 
 # Définition du PATH pour inclure les exécutables des modules Node
 ENV PATH /opt/node_modules/.bin:$PATH

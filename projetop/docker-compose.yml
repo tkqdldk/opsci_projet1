@@ -50,7 +50,7 @@ services: #liste de nos conteneurs
   react-app:
     container_name: reactApp
     build: #obligatoire si on veut construire l'image via le dockerfile
-      context: ./front_end 
+      context: ../front_end 
       dockerfile: Dockerfile
     ports:
     - "5173:5173" #valeur vite
