@@ -14,7 +14,6 @@ Un conteneur Docker pour la base de données PostgreSQL a été démarré avec l
 * Adresse IP : `172.19.0.2`
 * Utilisateur PostgreSQL : `strapi`
 * Mot de passe PostgreSQL : `safepassword`
-* Base de données : `strapi`
 * Ports exposés : `5432:5432`
 
 Cette base de données est utilisée par l'application Strapi et est accessible localement sur le port `5432`.
@@ -23,14 +22,14 @@ Cette base de données est utilisée par l'application Strapi et est accessible 
 
 Les modalités de construction et de lancement du front-end sont dans 
 
-- Nom du conteneur : `strapi-fe`
-- Ports exposés : `5173:5173`
+* Nom du conteneur : `strapi-fe`
+* Ports exposés : `5173:5173`
 
 
 ## Conteneur Backend
 
-- Nom du conteneur : `strapi-be`
-- Port exposé : `1337:1337`
+* Nom du conteneur : `strapi-be`
+* Port exposé : `1337:1337`
 
 Le conteneur héberge l'application backend.
 
